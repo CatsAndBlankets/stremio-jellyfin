@@ -21,8 +21,8 @@ function itemToMeta(item) {
     return {
         id: item.ProviderIds.Imdb,
         type: item.Type.toLowerCase(),
-        name: item.Name,
-        poster: `${server}/Items/${item.Id}/Images/Primary`
+        name: item.Name
+        // poster: `${server}/Items/${item.Id}/Images/Primary`
     }
 }
 

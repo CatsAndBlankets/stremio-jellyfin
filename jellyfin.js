@@ -5,7 +5,7 @@ export const server = process.env.JELLYFIN_SERVER
 const user = process.env.JELLYFIN_USER
 const password = process.env.JELLYFIN_PASSWORD
 const device = os.hostname()
-const itemsLimit = 20
+const itemsLimit = 100
 
 export class JellyfinApi {
 
@@ -44,7 +44,7 @@ export class JellyfinApi {
 
     async searchItems(skip, movie, searchTerm = null) {
         let firstItem = Number(skip) + 1
-        let itemsSearch = `${server}/Items?userId=${this.auth.User.Id}&hasImdb=true&Recursive=true&IncludeItemTypes=Movie,Series&startIndex=${firstItem}&limit=${itemsLimit}&sortBy=SortName`
+        let itemsSearch = `${server}/Items?userId=${this.auth.User.Id}&hasImdb=true&Recursive=true&startIndex=${firstItem}&limit=${itemsLimit}&sortBy=SortName`
         if (searchTerm) {
             itemsSearch += `&searchTerm=${searchTerm}`
         }

@@ -8,7 +8,7 @@ export const manifest = {
             "extra": [
                 {
                     "name": "skip",
-                    "isRequired": true
+                    "isRequired": false
                 },
                 {
                     "name": "search",
@@ -22,7 +22,7 @@ export const manifest = {
             "extra": [
                 {
                     "name": "skip",
-                    "isRequired": true
+                    "isRequired": false
                 },
                 {
                     "name": "search",
