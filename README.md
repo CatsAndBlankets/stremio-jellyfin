@@ -25,11 +25,42 @@ Jellyfin Stremio addon should be installed in your local docker environment. To 
 
 `docker pull ghcr.io/akarazniewicz/stremio-jellyfin:latest`
 
-and then run it:
+If you would like to install this fork's docker image, you will need to clone the repository and build the image. This can be done by running this command inside the repositories' folder:
+```
+docker compose build t stremio-jellyfin:myversion .
+```
+Once the image is built, replace `ghcr.io/akarazniewicz/stremio-jellyfin:latest` with `stremio-jellyfin:myversion`
 
-`docker run -p 60421:60421 -e JELLYFIN_USER="<your jellyfin username>" -e JELLYFIN_PASSWORD="<your jellyfin user password>" -e JELLYFIN_SERVER="<your jellyfin server address>" ghcr.io/akarazniewicz/stremio-jellyfin"`
 
-where:
+### Install Docker Container
+Either run the container with docker:
+```
+docker run -d \
+  --name stremio-jellyfin \
+  --restart unless-stopped \
+  -p 60421:60421 \
+  -e JELLYFIN_USER="<your jellyfin username>" \
+  -e JELLYFIN_PASSWORD="<your jellyfin user password>" \
+  -e JELLYFIN_SERVER="<your jellyfin server address>" \
+  ghcr.io/akarazniewicz/stremio-jellyfin:latest
+```
+
+Or use docker compose with a docker-compose.yaml file
+```
+services:
+  stremio-jellyfin:
+    image: ghcr.io/akarazniewicz/stremio-jellyfin:latest
+    container_name: stremio-jellyfin
+    restart: unless-stopped
+    environment:
+      - JELLYFIN_USER="<your jellyfin username>"
+      - JELLYFIN_PASSWORD="<your jellyfin user password>"
+      - JELLYFIN_SERVER="<your jellyfin server address>"
+    ports:
+      - 60421:60421
+```
+
+Note that:
 * `60421` - is standard port addon is running on (You may remap it in docker)
 * `<your jellyfin username>` - Jellyfin username
 * `<your jellyfin user password>` - Jellyfin password
